@@ -7,6 +7,7 @@ in {
     ../all.nix
     ./hardware-configuration.nix
     ../../containers/homer
+    ../../containers/filebrowser
   ];
 
   networking = {

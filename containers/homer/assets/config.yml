@@ -48,27 +48,15 @@ links: []
 
 # Services
 services:
-  - name: "Application"
-    icon: "fas fa-code-branch"
-    # A path to an image can also be provided. Note that icon take precedence if both icon and logo are set.
-    # logo: "path/to/logo"
+  - name: "Brewing..."
+    icon: "fas fa-flask"
     items:
-      - name: "Awesome app"
-        logo: "assets/tools/sample.png"
-        # Alternatively a fa icon can be provided:
-        # icon: "fab fa-jenkins"
-        subtitle: "Bookmark example"
+      - name: "File Browser"
+        icon: "fas fa-file"
         tag: "app"
-        keywords: "self hosted reddit" # optional keyword used for searching purpose
-        url: "https://www.reddit.com/r/selfhosted/"
-        target: "_blank" # optional html tag target attribute
-      - name: "Another one"
-        logo: "assets/tools/sample2.png"
-        subtitle: "Another application"
-        tag: "app"
-        # Optional tagstyle
-        tagstyle: "is-success"
-        url: "#"
+        keywords: "file browser"
+        url: "http://192.168.1.244:8001"
+        target: "_blank"
   - name: "Other group"
     icon: "fas fa-heartbeat"
     items:
