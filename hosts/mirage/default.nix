@@ -17,6 +17,10 @@ in {
   };
 
   virtualisation = {
+    oci-containers = {
+      backend = "podman";
+    };
+
     docker = {
       enable = true;
       autoPrune.enable = true;
@@ -32,7 +36,7 @@ in {
     mutableUsers = false;
     users.venikx = {
       isNormalUser = true;
-      password = "v3nikx";
+      password = "v3nikx"; # remember to change this
       extraGroups = [ "wheel" "docker" ];
     };
   };

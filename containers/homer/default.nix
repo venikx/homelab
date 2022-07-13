@@ -2,8 +2,6 @@
 
 {
   config.virtualisation.oci-containers = {
-    backend = "podman";
-
     containers = {
       homer = {
         user = "1001:100";
