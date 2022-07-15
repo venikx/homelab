@@ -57,6 +57,12 @@ services:
         keywords: "file browser"
         url: "http://192.168.1.244:8001"
         target: "_blank"
+      - name: "Tiny Tiny RSS"
+        icon: "fas fa-rss"
+        tag: "app"
+        keywords: "rss"
+        url: "http://192.168.1.244:8002"
+        target: "_blank"
   - name: "Other group"
     icon: "fas fa-heartbeat"
     items:

@@ -9,6 +9,7 @@ in {
      #../../containers/ctest
     ../../containers/homer
     ../../containers/filebrowser
+    ../../containers/ttrss
   ];
 
   networking = {
