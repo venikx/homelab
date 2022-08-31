@@ -10,6 +10,12 @@
       containerPort = 80;
       hostPort = 8002;
     }];
+    bindMounts = {
+      "/etc/resolv.conf" = {
+        hostPath = "/etc/resolv.conf";
+        isReadOnly = true;
+      };
+    };
     config = { config, pkgs, ... }:
       let ttrssConfig = config.services.tt-rss;
       in {

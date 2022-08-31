@@ -10,6 +10,12 @@
       containerPort = 80;
       hostPort = 8099;
     }];
+    bindMounts = {
+      "/etc/resolv.conf" = {
+        hostPath = "/etc/resolv.conf";
+        isReadOnly = true;
+      };
+    };
     config = { config, pkgs, ... }:
       {
         services.httpd.enable = true;
