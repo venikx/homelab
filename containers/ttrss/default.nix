@@ -31,7 +31,7 @@
 
         services.tt-rss = {
           enable = true;
-          selfUrlPath = "http://192.168.1.244:8002";
+          selfUrlPath = "http://192.168.1.197:8002";
         };
 
         services.postgresql = {

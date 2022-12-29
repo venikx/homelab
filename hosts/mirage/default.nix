@@ -17,14 +17,18 @@ in {
     firewall = {
       allowedTCPPortRanges = [{ from = 8000; to = 8100; }];
       # NOTE(Kevin): See: https://github.com/NixOS/nixpkgs/issues/72580
-      extraCommands = "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE";
+      extraCommands = "iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE";
     };
 
     nat = {
       enable = true;
       internalInterfaces = [ "ve-*" ];
-      externalInterface = "eth0";
+      externalInterface = "wlan0";
     };
+
+    networkmanager.enable = true;
+    useDHCP = false;
+    interfaces.wlan0.useDHCP = true;
   };
 
   virtualisation = {

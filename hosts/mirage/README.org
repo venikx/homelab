@@ -9,8 +9,8 @@
 * [[https://nix.dev/tutorials/installing-nixos-on-a-raspberry-pi][Installation]]
 * Deploy
 #+begin_src shell
-scp -r /home/venikx/code/homelab venikx@192.168.1.244:/home/venikx/homelab
-ssh venikx@192.168.1.244
+scp -r /home/venikx/code/homelab venikx@192.168.1.197:/home/venikx/homelab
+ssh venikx@192.168.1.197
 sudo -i
 nixos-rebuild switch
 #+end_src
