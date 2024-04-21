@@ -3,10 +3,7 @@
 {
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-
+    settings.experimental-features = [ "nix-command" "flakes" ];
     settings.auto-optimise-store = true;
     gc = {
       automatic = true;
@@ -21,7 +18,7 @@
     git
     neovim
     wget
-    ranger
+    curl
   ];
 
   services.openssh.enable = true;

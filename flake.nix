@@ -2,7 +2,7 @@
   description = "Homelab";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
   };
 
@@ -18,10 +18,13 @@
             system = "aarch64-linux";
             config.allowUnfree = true;
           };
-          modules = [
-            ./hosts/mirage
-            nixos-hardware.nixosModules.raspberry-pi-4
-          ];
+          modules =
+            [ ./hosts/mirage nixos-hardware.nixosModules.raspberry-pi-4 ];
+        };
+
+        chakra = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./hosts/chakra ];
         };
       };
     };
