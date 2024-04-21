@@ -24,7 +24,7 @@
 
         chakra = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./hosts/chakra ];
+          modules = [ ./hosts/chakra ./nixosModules ];
         };
       };
     };

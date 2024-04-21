@@ -21,5 +21,6 @@
     curl
   ];
 
+  networking.firewall.enable = true;
   services.openssh.enable = true;
 }
