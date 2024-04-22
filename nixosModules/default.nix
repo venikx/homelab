@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./fail2ban.nix ./wireguard.nix ];
+  imports = [ ./fail2ban.nix ./tailscale.nix ./wireguard.nix ];
 }
