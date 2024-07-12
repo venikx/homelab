@@ -14,8 +14,11 @@
       nixosConfigurations = {
         mirage = lib.nixosSystem {
           system = "aarch64-linux";
-          modules =
-            [ ./hosts/mirage nixos-hardware.nixosModules.raspberry-pi-4 ];
+          modules = [
+            ./hosts/mirage
+            nixos-hardware.nixosModules.raspberry-pi-4
+            ./nixosModules
+          ];
         };
 
         chakra = nixpkgs.lib.nixosSystem {
