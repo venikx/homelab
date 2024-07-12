@@ -14,10 +14,6 @@
       nixosConfigurations = {
         mirage = lib.nixosSystem {
           system = "aarch64-linux";
-          pkgs = import nixpkgs {
-            system = "aarch64-linux";
-            config.allowUnfree = true;
-          };
           modules =
             [ ./hosts/mirage nixos-hardware.nixosModules.raspberry-pi-4 ];
         };
