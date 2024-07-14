@@ -1,5 +1,12 @@
 { ... }:
 
 {
-  imports = [ ./fail2ban.nix ./grafana.nix ./nginx.nix ./tailscale.nix ];
+  imports = [
+    ./fail2ban.nix
+    ./grafana.nix
+    ./loki.nix
+    ./nginx.nix
+    ./prometheus.nix
+    ./tailscale.nix
+  ];
 }
