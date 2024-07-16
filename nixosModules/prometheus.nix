@@ -1,31 +1,27 @@
 { config, lib, ... }:
 
 {
-  config = lib.mkIf config.services.prometheus.enable {
-    services.prometheus = {
-      port = 9001;
+  services.prometheus = {
+    port = 9090;
+    # NOTE(Kevin): By default use node_exporter on the instance which runs the
+    # prometheus service to enable self monitoring
+    exporters.node.enable = lib.mkDefault config.services.prometheus.enable;
 
-      exporters = {
-        node = {
-          enable = true;
-          enabledCollectors = [ "systemd" ];
-          port = 9002;
-        };
-      };
-
-      scrapeConfigs = [{
-        job_name = "nodes";
-        static_configs = [{
-          targets = [
-            "127.0.0.1:${
-              toString config.services.prometheus.exporters.node.port
-            }"
-          ];
-        }];
+    # TODO(Kevin): I wonder if we can move this config to ./node.nix as it's
+    # specific to the node_exporter, but without hardcoding all the ip's.
+    # Keeping it here for now.
+    scrapeConfigs = [{
+      job_name = "nodes";
+      static_configs = [{
+        targets = [
+          "10.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+          "10.0.0.2:${toString config.services.prometheus.exporters.node.port}"
+        ];
       }];
-
-    };
-
-    networking.firewall.allowedTCPPorts = [ config.services.prometheus.port ];
+    }];
   };
+
+  networking.firewall.allowedTCPPorts =
+    lib.mkIf config.services.prometheus.enable
+    [ config.services.prometheus.port ];
 }
