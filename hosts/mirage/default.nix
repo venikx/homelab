@@ -1,11 +1,12 @@
-{ lib, ... }: {
+{ lib, pkgs, config, ... }: {
 
-  imports = [ ../all.nix ./hardware-configuration.nix ];
+  imports = [ ../all.nix ./hardware-configuration.nix ./wireguard.nix ];
 
   networking = {
     hostName = "mirage";
-    networkmanager.enable = true;
-    useDHCP = lib.mkDefault true;
+    # TODO(Kevin): Figure out how to make Wireguard wg-quick play nice with wifi
+    # either with networkmanager or otherwise. For now I'll just use ethernet cable
+    #networkmanager.enable = true;
   };
 
   services.grafana.enable = true;
