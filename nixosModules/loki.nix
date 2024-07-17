@@ -1,76 +1,54 @@
 { config, lib, ... }:
 
 {
-  config = lib.mkIf config.services.loki.enable {
-    services.loki = {
-      configuration = {
-        server.http_listen_port = 3100;
-        auth_enabled = false;
+  services.loki = {
+    configuration = {
+      server.http_listen_port = 9101;
+      auth_enabled = false;
 
-        common = {
-          ring = {
-            instance_addr = "127.0.0.1";
-            kvstore = { store = "inmemory"; };
+      common = {
+        ring = {
+          instance_addr = "127.0.0.1";
+          kvstore = { store = "inmemory"; };
 
-          };
-          replication_factor = 1;
-          path_prefix = "/tmp/loki";
         };
-
-        schema_config = {
-          configs = [{
-            from = "2024-04-01";
-            store = "tsdb";
-            object_store = "filesystem";
-            schema = "v13";
-            index = {
-              prefix = "index_";
-              period = "24h";
-            };
-          }];
-        };
-
-        storage_config = {
-          filesystem = { directory = "/var/lib/loki/chunks"; };
-        };
+        replication_factor = 1;
+        path_prefix = "/tmp/loki";
       };
-    };
 
-    services.promtail = {
-      enable = true;
-
-      configuration = {
-        server = {
-          http_listen_port = 9101;
-          grpc_listen_port = 0;
-        };
-        positions = { filename = "/tmp/positions.yaml"; };
-        clients = [{
-          url = "http://127.0.0.1:${
-              toString
-              config.services.loki.configuration.server.http_listen_port
-            }/loki/api/v1/push";
-        }];
-        scrape_configs = [{
-          job_name = "journal";
-          journal = {
-            max_age = "12h";
-            labels = {
-              job = "systemd-journal";
-              host = config.networking.hostName;
-            };
+      schema_config = {
+        configs = [{
+          from = "2024-04-01";
+          store = "tsdb";
+          object_store = "filesystem";
+          schema = "v13";
+          index = {
+            prefix = "index_";
+            period = "24h";
           };
-          relabel_configs = [{
-            source_labels = [ "__journal__systemd_unit" ];
-            target_label = "unit";
-          }];
         }];
       };
-    };
 
-    networking.firewall.allowedTCPPorts = [
-      config.services.promtail.configuration.server.http_listen_port
-      config.services.loki.configuration.server.http_listen_port
-    ];
+      storage_config = {
+        filesystem = { directory = "/var/lib/loki/chunks"; };
+      };
+    };
   };
+
+  # NOTE(Kevin): By default use promtail on the instance which runs the
+  # loki service to enable self monitoring the logs
+  services.promtail.enable = lib.mkDefault config.services.loki.enable;
+
+  services.grafana.provision.enable = true;
+  services.grafana.provision.datasources.settings.datasources = [{
+    name = "Loki";
+    type = "loki";
+    access = "proxy";
+    url = "http://127.0.0.1:${
+        toString config.services.loki.configuration.server.http_listen_port
+      }";
+  }];
+
+  networking.firewall.allowedTCPPorts = lib.mkIf config.services.loki.enable
+    [ config.services.loki.configuration.server.http_listen_port ];
 }
