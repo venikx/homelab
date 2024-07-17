@@ -3,6 +3,7 @@
 {
   services.prometheus = {
     port = 9090;
+    retentionTime = "1y";
     # NOTE(Kevin): By default use node_exporter on the instance which runs the
     # prometheus service to enable self monitoring
     exporters.node.enable = lib.mkDefault config.services.prometheus.enable;
@@ -20,6 +21,14 @@
       }];
     }];
   };
+
+  services.grafana.provision.enable = true;
+  services.grafana.provision.datasources.settings.datasources = [{
+    name = "Prometheus";
+    type = "prometheus";
+    access = "proxy";
+    url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+  }];
 
   networking.firewall.allowedTCPPorts =
     lib.mkIf config.services.prometheus.enable

@@ -1,7 +1,6 @@
 { config, lib, ... }:
 
 {
-  config = lib.mkIf config.services.tailscale.enable {
-    networking.firewall.trustedInterfaces = [ "tailscale0" ];
-  };
+  networking.firewall.trustedInterfaces =
+    lib.mkIf config.services.tailscale.enable [ "tailscale0" ];
 }
