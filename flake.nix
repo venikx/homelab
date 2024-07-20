@@ -14,7 +14,7 @@
         pkgs = nixpkgs.legacyPackages."${system}";
         sopsPkgs = sops-nix.packages."${pkgs.system}";
       in {
-        devShells.default = pkgs.mkShell {
+        devShells.secrets = pkgs.mkShell {
           packages = with pkgs;
             with sopsPkgs; [
               ssh-to-age
