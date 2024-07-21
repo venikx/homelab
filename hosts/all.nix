@@ -11,6 +11,7 @@
       options = "--delete-older-than 30d";
     };
   };
+  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     coreutils
