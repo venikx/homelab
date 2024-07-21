@@ -17,6 +17,11 @@
       fsType = "ext4";
       options = [ "noatime" ];
     };
+    "/mnt/nas/entertainment" = {
+      device = "192.168.1.219:/mnt/charmander/entertainment";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
   };
 
   hardware.enableRedistributableFirmware = true;
