@@ -21,9 +21,10 @@
               sops-import-keys-hook
               sops-init-gpg-key
               sops
-              git-crypt
             ];
         };
+        devShells.default =
+          pkgs.mkShell { packages = with pkgs; [ git-crypt ]; };
       })) // {
         nixosConfigurations = let
           buildSecrets =
