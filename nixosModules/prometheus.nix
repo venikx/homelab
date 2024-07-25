@@ -17,6 +17,11 @@
         targets = [
           "10.0.0.1:${toString config.services.prometheus.exporters.node.port}"
           "10.0.0.2:${toString config.services.prometheus.exporters.node.port}"
+          # TODO(Kevin): This ain't gonna work without exposing the ports,
+          # without having them in the same network config
+          #"192.168.1.155:${
+          #  toString config.services.prometheus.exporters.node.port
+          #}"
         ];
       }];
     }];
