@@ -2,20 +2,19 @@
 
   imports = [ ../all.nix ./hardware-configuration.nix ./wireguard.nix ];
 
-  networking = {
-    hostName = "mirage";
-    # TODO(Kevin): Figure out how to make Wireguard wg-quick play nice with wifi
-    # either with networkmanager or otherwise. For now I'll just use ethernet cable
-    #networkmanager.enable = true;
-  };
+  networking = { hostName = "mirage"; };
+
+  time.timeZone = "Europe/Helsinki";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   services.grafana.enable = true;
   services.prometheus.enable = true;
   services.loki.enable = true;
+  services.sabnzbd.enable = true;
+  services.radarr.enable = true;
+  services.prowlarr.enable = true;
 
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC32ziC0A25c+EOct/WXTf3bWUce+0padTZKnddsYNK+QYngGsfJNn1mZsA/w6WefRUQZ+0mghuPpnnd6AsGbL+Xq6h1vQC2XxFjBYZhv4FUr+572G7TklCqc4t9teAmjqzOhP8g4L+gFky0atb8lhw7HGA3e5h+wl7vrxXfU/pLE2YMasYQJ7qN/yJ3G/ZtYGcsFUCUtdZAWYdJUA9pLxJ/ujJx8S+Xt4DlflSXJCEYDs271DhOJeVpj2U+MwHQQnQkmU/k5nk/OBnE/SpROdUiimRFYIJyP27RSm4xW6gdWmKZIwPuQd5h1V9RzFEurk0A27ePLjfRlmr4GW/YLvPZXOCGk1lj/Xo63JE5FSRsltlpkHhqtcMGeE8TJialABG3ZCl1avIlQK4FAImX9KftbmTyb0MFuRIAOmW5BvwzFRcLjJgAu3TWb5yLIZXZSugOVYYh5owD6TA5vmyYQDtZQ/k9eSct1NnLW2cEAILZlGmSt6QU1rtjSDUd41lg9yfGuvwzNfPHUtwcsApEGbNVo7TAecsRAdHEh23fyxHgKdC1w8uWdw3pfWNIikRqbJBSiT3uNNuE1MaQn5VF+0dTgd4fe7sRqFIxuucyj0+HZoNRCYps1c6FBVyNaBFJxpctdVGpWheabGY5cab+H9pgvUFxM1rUufOGfXqIxIa4w== cardno:26_717_913"
   ];
-
-  system.stateVersion = "23.11";
 }

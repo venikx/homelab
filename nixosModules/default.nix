@@ -9,6 +9,9 @@
     ./loki.nix
     ./promtail.nix
     ./nginx.nix
+    ./sabnzbd.nix
+    ./prowlarr.nix
+    ./radarr.nix
     ./tailscale.nix
   ];
 }
