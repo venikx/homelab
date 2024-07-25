@@ -18,7 +18,7 @@
       options = [ "noatime" ];
     };
     "/mnt/nas/entertainment" = {
-      device = "192.168.1.219:/mnt/charmander/entertainment";
+      device = "192.168.1.182:/mnt/tank/entertainment";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };

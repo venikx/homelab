@@ -21,8 +21,8 @@
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };
-    "/mnt/nas/media" = {
-      device = "192.168.1.182:/mnt/tank/media";
+    "/mnt/nas/entertainment" = {
+      device = "192.168.1.182:/mnt/tank/entertainment";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };
