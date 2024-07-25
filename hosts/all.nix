@@ -28,6 +28,7 @@
 
     secrets."ips/mirage" = { };
     secrets."ips/chakra" = { };
+    secrets."ips/water" = { };
   };
 
   networking.firewall.enable = true;

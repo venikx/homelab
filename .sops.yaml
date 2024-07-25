@@ -6,6 +6,7 @@ keys:
   - &me 44B3A9E90E5F58313E3DF93C9D0ACBD97007A6BE
   - &chakra age1lk06c8z5hxgs3mtn83hr6kmt3699sctnz9w0mna85t8kx0xchy2s60cf00
   - &mirage age1svk6t0dpmp5tnfu6yva7lalw65hka3vyr4rwp5anhj0vngptpaasw3qq7r
+  - &water age1gwqtqs402mgp7m9gz5wg8f878m4devjerryqse7kespkvk0d8udqaydp48
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -14,3 +15,4 @@ creation_rules:
       age:
       - *chakra
       - *mirage
+      - *water

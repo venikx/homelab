@@ -45,6 +45,12 @@
             modules =
               [ ./hosts/chakra sops-nix.nixosModules.sops ./nixosModules ];
           };
+
+          water = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules =
+              [ ./hosts/water sops-nix.nixosModules.sops ./nixosModules ];
+          };
         };
       };
 }
