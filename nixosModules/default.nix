@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./calibre-web.nix
     ./fail2ban.nix
     ./grafana.nix
     ./prometheus.nix
