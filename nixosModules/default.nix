@@ -14,5 +14,6 @@
     ./prowlarr.nix
     ./radarr.nix
     ./tailscale.nix
+    ./immich.nix
   ];
 }
