@@ -9,6 +9,7 @@
 
   services.prometheus.exporters.node.enable = true;
   services.promtail.enable = true;
+  services.syncthing.enable = true;
 
   services.calibre-web.enable = true;
 

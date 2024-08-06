@@ -15,5 +15,6 @@
     ./radarr.nix
     ./tailscale.nix
     ./immich.nix
+    ./syncthing.nix
   ];
 }

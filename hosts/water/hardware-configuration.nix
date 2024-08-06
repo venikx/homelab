@@ -16,6 +16,11 @@
       fsType = "ext4";
       options = [ "noatime" ];
     };
+    "/mnt/nas/documents" = {
+      device = "192.168.1.182:/mnt/tank/documents";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
     "/mnt/nas/images" = {
       device = "192.168.1.182:/mnt/tank/images";
       fsType = "nfs";
