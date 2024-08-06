@@ -7,6 +7,9 @@
   time.timeZone = "Europe/Helsinki";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # NOTE(Kevin): Tailscale doesn't seem to allow internet going through the
+  # Wireguard tunnel
+  # services.tailscale.enable = true;
   services.grafana.enable = true;
   services.prometheus.enable = true;
   services.loki.enable = true;
