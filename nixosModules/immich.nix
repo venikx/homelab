@@ -35,7 +35,7 @@
     boot.kernel.sysctl = { "vm.overcommit_memory" = 1; };
 
     virtualisation.oci-containers.containers = let
-      immich-version = "v1.109.2";
+      immich-version = "v1.120.2";
       environment = {
         DB_HOSTNAME = "immich-postgres";
         REDIS_HOSTNAME = "immich-redis";
@@ -56,7 +56,7 @@
           "/mnt/nas/images/artwork:/mnt/nas/images/artwork:ro"
           "/mnt/nas/images/purpose-based:/mnt/nas/images/purpose-based:ro"
         ];
-        ports = [ "8090:3001" ];
+        ports = [ "8090:2283" ];
         inherit environment;
         extraOptions = [ "--network=immich-net" ];
         dependsOn = [ "immich-redis" "immich-postgres" ];

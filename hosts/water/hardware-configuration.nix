@@ -10,24 +10,25 @@
       [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" ];
   };
 
-  fileSystems = {
+  fileSystems = let nasIP = "172.19.20.250";
+  in {
     "/" = {
       device = "/dev/disk/by-uuid/70bbe5fd-9fcd-43b8-a44f-e974bb641db5";
       fsType = "ext4";
       options = [ "noatime" ];
     };
     "/mnt/nas/documents" = {
-      device = "192.168.1.182:/mnt/tank/documents";
+      device = "${nasIP}:/mnt/tank/documents";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };
     "/mnt/nas/images" = {
-      device = "192.168.1.182:/mnt/tank/images";
+      device = "${nasIP}:/mnt/tank/images";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };
     "/mnt/nas/entertainment" = {
-      device = "192.168.1.182:/mnt/tank/entertainment";
+      device = "${nasIP}:/mnt/tank/entertainment";
       fsType = "nfs";
       options = [ "x-systemd.automount" "noauto" ];
     };
