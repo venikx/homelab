@@ -12,8 +12,6 @@ nixos-rebuild switch --fast --flake .#mirage \
     --build-host $MIRAGE_IP \
     --option eval-cache false
 
-echo "Rebuilding:" $WATER_IP
-nixos-rebuild switch --fast --flake .#water \
-    --target-host $WATER_IP \
-    --build-host $WATER_IP \
-    --option eval-cache false
+echo "Rebuilding:" $VM_PROD_MEDIA_01_IP
+nixos-rebuild switch --flake .#vm-prod-media-01 \
+    --target-host $VM_PROD_MEDIA_01_IP

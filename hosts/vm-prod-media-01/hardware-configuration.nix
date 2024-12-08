@@ -47,32 +47,22 @@
           };
         };
       };
-      nodev = {
-        "/tmp" = {
-          fsType = "tmpfs";
-          mountOptions = [ "size=500M" ];
-        };
+    };
+    nodev = {
+      "/tmp" = {
+        fsType = "tmpfs";
+        mountOptions = [ "size=500M" ];
       };
     };
   };
 
-  #fileSystems = let nasIP = "172.19.20.250";
-  #in {
-  #  "/mnt/nas/documents" = {
-  #    device = "${nasIP}:/mnt/tank/documents";
-  #    fsType = "nfs";
-  #    options = [ "x-systemd.automount" "noauto" ];
-  #  };
-  #  "/mnt/nas/images" = {
-  #    device = "${nasIP}:/mnt/tank/images";
-  #    fsType = "nfs";
-  #    options = [ "x-systemd.automount" "noauto" ];
-  #  };
-  #  "/mnt/nas/entertainment" = {
-  #    device = "${nasIP}:/mnt/tank/entertainment";
-  #    fsType = "nfs";
-  #    options = [ "x-systemd.automount" "noauto" ];
-  #  };
-  #};
+  fileSystems = let nasIP = "172.19.20.10";
+  in {
+    "/mnt/nas/entertainment" = {
+      device = "${nasIP}:/mnt/tank/entertainment";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" ];
+    };
+  };
 
 }
