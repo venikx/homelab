@@ -22,16 +22,8 @@
     curl
   ];
 
-  sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-
-    secrets."ips/mirage" = { };
-    secrets."ips/chakra" = { };
-    secrets."ips/vm-prod-media-01" = { };
-  };
-
   networking.firewall.enable = true;
+
   services.openssh = {
     hostKeys = [{
       path = "/etc/ssh/ssh_host_ed25519_key";

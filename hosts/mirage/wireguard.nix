@@ -11,8 +11,6 @@
       peers = [{
         publicKey = "VwfW/NgWOp/sK62WZSSWJbWwkJg0EUHroKVzMjFXeRQ=";
         allowedIPs = [ "0.0.0.0/0" "::/0" ];
-        # NOTE(Kevin): Using git-crypt to hide the ip, as it's not super crucial to
-        # not be exposed at runtime + sops-nix would need to be an evaluated valued
         endpoint = "${buildSecrets.ips.chakra}:51820";
         persistentKeepalive = 25;
       }];
