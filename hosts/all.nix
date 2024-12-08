@@ -28,7 +28,7 @@
 
     secrets."ips/mirage" = { };
     secrets."ips/chakra" = { };
-    secrets."ips/water" = { };
+    secrets."ips/vm-prod-media-01" = { };
   };
 
   networking.firewall.enable = true;

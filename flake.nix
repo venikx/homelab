@@ -2,13 +2,21 @@
   description = "Homelab";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
     flake-utils.url = "github:numtide/flake-utils";
-    sops-nix.url = "github:Mic92/sops-nix";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, flake-utils, sops-nix }:
+  outputs = { self, nixpkgs, nixos-hardware, flake-utils, sops-nix, disko }:
     (flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages."${system}";
@@ -47,10 +55,14 @@
               [ ./hosts/chakra sops-nix.nixosModules.sops ./nixosModules ];
           };
 
-          water = nixpkgs.lib.nixosSystem {
+          vm-prod-media-01 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            modules =
-              [ ./hosts/water sops-nix.nixosModules.sops ./nixosModules ];
+            modules = [
+              sops-nix.nixosModules.sops
+              disko.nixosModules.disko
+              ./hosts/vm-prod-media-01
+              ./nixosModules
+            ];
           };
         };
       };
