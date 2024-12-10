@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  users.groups.media = { };
+  users.groups.media = { gid = 8675309; };
 
   services.calibre-web = {
     group = "media";
     listen = {
-      ip = "127.0.0.1";
+      ip = "0.0.0.0";
       port = 8083;
     };
     options = {
@@ -21,7 +21,7 @@
     enable = true;
     virtualHosts."_" = {
       locations."/calibre" = {
-        proxyPass = "http://127.0.0.1:8083";
+        proxyPass = "http://0.0.0.0:8083";
         recommendedProxySettings = true;
         extraConfig = ''
           proxy_set_header X-Script-Name /calibre;

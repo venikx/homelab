@@ -11,7 +11,7 @@
   #services.promtail.enable = true;
 
   #services.syncthing.enable = true;
-  #services.calibre-web.enable = true;
+  services.calibre-web.enable = true;
   #modules.services.immich.enable = true;
 
 }
