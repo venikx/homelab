@@ -6,7 +6,7 @@
   services.calibre-web = {
     group = "media";
     listen = {
-      ip = "0.0.0.0";
+      ip = "127.0.0.1";
       port = 8083;
     };
     options = {
@@ -21,7 +21,9 @@
     enable = true;
     virtualHosts."_" = {
       locations."/calibre" = {
-        proxyPass = "http://0.0.0.0:8083";
+        proxyPass = "http://${config.services.calibre-web.listen.ip}:${
+            toString config.services.calibre-web.listen.port
+          }";
         recommendedProxySettings = true;
         extraConfig = ''
           proxy_set_header X-Script-Name /calibre;
