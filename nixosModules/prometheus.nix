@@ -2,7 +2,8 @@
 
 {
   services.prometheus = {
-    port = 9090;
+    listenAddress = "127.0.0.1";
+    port = 9001;
     retentionTime = "1y";
     # NOTE(Kevin): By default use node_exporter on the instance which runs the
     # prometheus service to enable self monitoring
@@ -15,13 +16,13 @@
       job_name = "nodes";
       static_configs = [{
         targets = [
-          "10.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-          "10.0.0.2:${toString config.services.prometheus.exporters.node.port}"
+          #"10.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+          #"10.0.0.2:${toString config.services.prometheus.exporters.node.port}"
           # TODO(Kevin): This ain't gonna work without exposing the ports,
           # without having them in the same network config
-          #"192.168.1.155:${
-          #  toString config.services.prometheus.exporters.node.port
-          #}"
+          "${config.services.prometheus.exporters.node.listenAddress}:${
+            toString config.services.prometheus.exporters.node.port
+          }"
         ];
       }];
     }];
@@ -32,7 +33,9 @@
     name = "Prometheus";
     type = "prometheus";
     access = "proxy";
-    url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+    url = "http://${toString config.services.prometheus.listenAddress}:${
+        toString config.services.prometheus.port
+      }";
   }];
 
   networking.firewall.allowedTCPPorts =

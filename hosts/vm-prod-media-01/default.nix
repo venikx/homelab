@@ -14,9 +14,9 @@
   networking = { hostName = "vm-prod-media-01"; };
 
   # graphs
-  #services.grafana.enable = true;
-  #services.prometheus.enable = true;
-  #services.loki.enable = true;
+  services.grafana.enable = true;
+  services.prometheus.enable = true;
+  services.loki.enable = true;
 
   # media
   services.calibre-web.enable = true;

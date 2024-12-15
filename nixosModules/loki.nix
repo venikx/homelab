@@ -3,7 +3,8 @@
 {
   services.loki = {
     configuration = {
-      server.http_listen_port = 9101;
+      server.http_listen_address = "127.0.0.1";
+      server.http_listen_port = 9002;
       auth_enabled = false;
 
       common = {
@@ -44,7 +45,8 @@
     name = "Loki";
     type = "loki";
     access = "proxy";
-    url = "http://127.0.0.1:${
+    url =
+      "http://${config.services.loki.configuration.server.http_listen_address}:${
         toString config.services.loki.configuration.server.http_listen_port
       }";
   }];

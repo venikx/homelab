@@ -4,12 +4,14 @@
   services.promtail = {
     configuration = {
       server = {
+        http_listen_address = "127.0.0.1";
         http_listen_port = 9102;
         grpc_listen_port = 0;
       };
       positions = { filename = "/tmp/positions.yaml"; };
       clients = [{
-        url = "http://10.0.0.2:${
+        url =
+          "http://${config.services.loki.configuration.server.http_listen_address}:${
             toString config.services.loki.configuration.server.http_listen_port
           }/loki/api/v1/push";
       }];

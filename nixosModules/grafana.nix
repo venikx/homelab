@@ -5,8 +5,8 @@
     settings = {
       server = {
         http_addr = "127.0.0.1";
-        http_port = 9100;
-        domain = "192.168.1.100";
+        http_port = 9000;
+        domain = "172.19.20.247";
       };
     };
   };
