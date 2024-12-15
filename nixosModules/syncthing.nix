@@ -4,6 +4,8 @@
   services.syncthing = {
     overrideDevices = true;
     overrideFolders = true;
+    openDefaultPorts = true;
+    guiAddress = "172.19.20.247:8384";
 
     settings = {
       devices = {
@@ -17,9 +19,10 @@
         };
         "earth-nixos" = {
           id =
-            "QUIA5TB-Q62NJOZ-NXNZPLY-6YXHXEJ-W5A6YMS-LTY2PXH-AZE5YHQ-22SHBQL";
+            "B7PPIHY-MT6I5OM-E3YEC43-FQHTCU4-NBGEOD6-QZGGOVU-EH4RPA3-VE3FVQ7";
         };
       };
+
       folders = {
         "org" = {
           path = "/mnt/nas/documents/99-org/gtd";
@@ -32,4 +35,6 @@
       };
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ 8384 ];
 }

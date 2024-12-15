@@ -12,6 +12,9 @@
   };
   nixpkgs.config.allowUnfree = true;
 
+  time.timeZone = lib.mkDefault "Europe/Helsinki";
+  i18n.defaultLocale = "en_US.UTF-8";
+
   environment.systemPackages = with pkgs; [
     coreutils
     pciutils
