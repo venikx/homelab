@@ -21,7 +21,7 @@
   # media
   services.calibre-web.enable = true;
   services.syncthing.enable = true;
-  #modules.services.immich.enable = true;
+  modules.services.immich.enable = true;
 
   environment.systemPackages = [ pkgs.cifs-utils pkgs.samba ];
   fileSystems = let nasIP = "172.19.20.10";

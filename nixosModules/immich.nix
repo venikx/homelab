@@ -45,7 +45,10 @@
         DB_USERNAME = "postgres";
         DB_PASSWORD = "postgres";
         IMMICH_METRICS = "true";
+        PUID = "1000";
+        PGID = "100";
         TZ = config.time.timeZone;
+        IMMICH_IGNORE_MOUNT_CHECK_ERRORS = "true";
       };
     in {
       immich-server = {
@@ -66,7 +69,7 @@
         autoStart = true;
         image = "ghcr.io/immich-app/immich-machine-learning:${immich-version}";
         volumes = [
-          "/mnt/nas/images/immich/:/usr/src/app/upload"
+          "/mnt/nas/images/immich:/usr/src/app/upload"
           "/var/lib/immich/machine-learning:/cache"
         ];
         inherit environment;
@@ -127,7 +130,21 @@
         };
       };
     };
+
+    fileSystems."/mnt/nas/images" = {
+      device = "//172.19.20.10/images";
+      fsType = "cifs";
+      options = [
+        "credentials=/etc/nixos/smb-secrets"
+        "vers=3.0"
+        "x-systemd.automount"
+        "x-systemd.requires=network-online.target"
+        "x-systemd.after=network-online.target"
+        "uid=1000"
+        "gid=100"
+        "file_mode=0770"
+        "dir_mode=0770"
+      ];
+    };
   };
-
 }
-
